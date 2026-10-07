@@ -2461,8 +2461,8 @@ function executeCommand(command, args) {
         var resultString = (typeof result === 'string') ? result : JSON.stringify(result);
         try {
             var resultObj = JSON.parse(resultString);
-            resultObj._responseTimestamp = new Date().toISOString();
             resultObj._commandExecuted = command;
+            resultObj._responseTimestamp = new Date().getTime();
             resultString = JSON.stringify(resultObj, null, 2);
             logToPanel("Added timestamp to result JSON for tracking freshness.");
         } catch (parseError) {
